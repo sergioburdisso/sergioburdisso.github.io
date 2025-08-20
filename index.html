@@ -13,29 +13,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f14;
-      --card: #111821;
+      /* より落ち着いた、低彩度の配色に変更 */
+      --bg: #0f1720;
+      --card: #111827;
       --ink: #e6eef7;
-      --ink-dim: #c0c9d3;
-      --accent: #68d391;
-      --link: #7aa2f7;
+      --ink-dim: #9aa6b3;
+      --accent: #93a6b3; /* muted steel blue */
+      --link: #8aa9d8;   /* subtle blue for links */
     }
     html, body { height: 100%; }
     body {
-      margin: 0; background: linear-gradient(180deg, #0b0f14 0%, #0e141c 100%);
+      margin: 0;
+      background: linear-gradient(180deg, var(--bg) 0%, color-mix(in oklab, var(--card) 95%, #000 5%) 100%);
       color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
       text-align: justify; /* Added for justified alignment */
     }
-    main { max-width: 960px; margin: 6rem auto; padding: 2rem; background: color-mix(in oklab, var(--card) 90%, #000 10%);
-           border-radius: 18px; box-shadow: 0 10px 40px rgba(0,0,0,.35); }
-    .flowing { column-width: 38ch; column-gap: 3rem; }
+    main {
+      /* 軽いカードにして落ち着かせる */
+      max-width: 960px;
+      margin: 6rem auto;
+      padding: 2rem;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .flowing {
+      margin: 0;
+    }
+    .flowing .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 3rem; /* horizontal gap between columns */
+      row-gap: 0.75rem;
+      align-items: start; /* ensures both columns start at the same top */
+    }
+    .flowing .col {
+      min-width: 0; /* prevents overflow in flex/grid children */
+    }
+    /* ensure paragraphs inside columns don't add top margin that misaligns content */
+    .flowing .col > p:first-child,
+    .flowing .col > .callout:first-child {
+      margin-top: 0;
+    }
     header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.25rem; }
-    header img { width: 140px; height: 140px; border-radius: 18px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
-    h1 { font-size: 2.4rem; line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
-    .sub { color: var(--ink-dim); font-weight: 500; margin-top: .25rem; }
-    a { color: var(--link); text-decoration: none; border-bottom: 1px dashed color-mix(in oklab, var(--link) 65%, #fff 35%); }
-    a:hover { filter: brightness(115%); border-bottom-style: solid; }
+    header img {
+      /* 影を弱める */
+      box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+      width: 140px; height: 140px; border-radius: 18px; object-fit: cover;
+    }
+    h1 {
+      /* メイン見出しをアクセント強すぎない色に */
+      color: var(--ink);
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      color: var(--ink-dim); /* subtitle を控えめに */
+      font-weight: 500;
+      margin-top: .25rem;
+    }
+    a {
+      color: var(--link); /* リンクは落ち着いた青 */
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(138,169,216,0.25);
+    }
+    a:hover {
+      filter: brightness(115%);
+      border-bottom-style: solid;
+    }
     /* focus-visible for keyboard users */
     a:focus-visible, button:focus-visible, .skip-link:focus-visible {
       outline: 3px solid color-mix(in oklab, var(--link) 50%, #fff 10%);
@@ -47,7 +95,7 @@
       position: absolute;
       left: 1rem;
       top: -40px;
-      background: #0b1220;
+      background: #1a202c;
       color: var(--ink);
       padding: .5rem .75rem;
       border-radius: 8px;
@@ -56,16 +104,43 @@
       transition: top .18s ease;
     }
     .skip-link:focus { top: 1rem; }
-    .tag { display: inline-block; padding: .25rem .6rem; background: #0f1925; border: 1px solid #1c2a3b; color: #cfe0ff; border-radius: 999px; font-size: .8rem; margin-right: .35rem; }
+    .tag {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.04);
+      color: var(--ink-dim);
+      display: inline-block;
+      padding: .25rem .6rem;
+      border-radius: 999px;
+      font-size: .8rem;
+      margin-right: .35rem;
+    }
     .inline-list { list-style: none; padding: 0; margin: .25rem 0 1rem 0; }
     .inline-list li { display: inline; }
-    .inline-list li:not(:last-child)::after { content: " · "; color: var(--ink-dim); }
-    .callout { background: #0f1a12; border: 1px solid #1a3523; padding: 1rem; border-radius: 14px; margin: 1rem 0; }
+    .inline-list li:not(:last-child)::after {
+      content: " · ";
+      color: var(--link); /* Change list dots to subtitle blue color */
+    }
+    .callout {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.03);
+      color: var(--ink-dim);
+      padding: .9rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+    }
     .muted { color: var(--ink-dim); }
-    footer { max-width: 960px; margin: 0 auto 4rem; padding: 0 2rem; color: #9fb0c3; }
+    footer {
+      max-width: 960px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      color: var(--ink-dim); /* Dim footer text color */
+    }
     /* small screens */
     @media (max-width: 720px) {
-      .flowing { column-width: auto; }
+      .flowing .cols {
+        grid-template-columns: 1fr;
+        column-gap: 1rem;
+      }
       header { flex-direction: column; align-items: flex-start; }
       header img { width: 120px; height: 120px; }
     }
@@ -75,6 +150,28 @@
       line-height: 1;
       font-weight: 800;
       margin-right: 0.18em;
+    }
+
+    @keyframes glow { /* keep a tiny placeholder to avoid errors */
+      from { text-shadow: none; }
+      to   { text-shadow: none; }
+    }
+    /* inline style on #trigger-steering を確実に無効化 */
+    #trigger-steering {
+      animation: none !important;
+      color: var(--link) !important;
+      text-shadow: none !important;
+    }
+
+    /* Make all list markers (bullets and numbers) use the subtitle blue color */
+    ul li::marker,
+    ol li::marker {
+      color: rgba(138,169,216,0.85);
+    }
+
+    /* Keep inline-list separator blue (already present but ensure precedence) */
+    .inline-list li:not(:last-child)::after {
+      color: var(--link);
     }
   </style>
 
@@ -105,71 +202,115 @@
       <div>
         <h1>Hi there, I’m Sergio 😊</h1>
         <p class="sub">I’m an Argentinian 🇦🇷 researcher in <strong>speech and natural language understanding</strong> at <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap</a> 🇨🇭🏔️</p>
-        <p>五つの「気」： 勇気・元気・本気・やる気・根気</p>
+        <p style="color: var(--ink-dim); font-style: italic;">五つの「気」： 勇気・元気・本気・やる気・根気</p>
         <ul class="inline-list">
-          <li><a href="https://github.com/sergioburdisso" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="https://scholar.google.com/citations?user=XOD8lrAAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
-          <li><a href="https://www.linkedin.com/in/sergio-burdisso-a90066334/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li>
+            <svg class="mr-1.5 text-gray-500 text-[0.83rem] flex-none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" role="img" width="1.03em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 250"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z" fill="currentColor"></path></svg>
+            <a href="https://github.com/sergioburdisso" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </li>
+
+          <li>
+            <!-- Google Scholar icon (mortarboard) -->
+            <svg class="mr-1.5 text-gray-500 text-[0.83rem] flex-none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+              <title>Google Scholar Icon</title>
+              <path d="M12 2L1 8l11 6 9-4.9V17h2V8L12 2z" fill="currentColor"/>
+              <path d="M3 9.2V11l9 5 9-5V9.2L12 13 3 9.2z" fill="currentColor"/>
+              <path d="M11 16v4h2v-4h-2z" fill="currentColor"/>
+            </svg>
+            <a href="https://scholar.google.com/citations?user=XOD8lrAAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">
+              Google Scholar
+            </a>
+          </li>
+
+          <li>
+            <svg class="mr-1.5 text-gray-500 text-[0.83rem] flex-none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32"><path d="M27.88.72a3.4 3.4 0 0 1 3.4 3.4v23.76a3.4 3.4 0 0 1-3.4 3.4H4.12a3.4 3.4 0 0 1-3.4-3.4V4.12a3.4 3.4 0 0 1 3.4-3.4h23.76Zm-.85 26.31v-9a5.53 5.53 0 0 0-5.53-5.53c-1.44 0-3.12.89-3.94 2.2v-1.88h-4.73v14.21h4.73v-8.37a2.37 2.37 0 1 1 4.74 0v8.37h4.73ZM7.31 10.16a2.85 2.85 0 0 0 2.85-2.85 2.86 2.86 0 1 0-2.85 2.85Zm2.36 16.87v-14.2h-4.7v14.2h4.7Z" fill="currentColor"></path></svg>
+            <a href="https://www.linkedin.com/in/sergio-burdisso-a90066334/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </li>
+
+          <li>
+            <!-- Hugging Face icon (simple friendly face) -->
+            <svg class="mr-1.5 text-gray-500 text-[0.83rem] flex-none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+              <title>Hugging Face Icon</title>
+              <circle cx="12" cy="12" r="10" fill="currentColor"/>
+              <!-- Left eye -->
+              <circle cx="8.5" cy="10" r="1.2" fill="var(--bg)"/>
+              <!-- Right eye -->
+              <circle cx="15.5" cy="10" r="1.2" fill="var(--bg)"/>
+              <!-- Mouth -->
+              <path d="M9 14c1 1 3 1.5 4 1.5s3-.5 4-1.5" stroke="var(--bg)" stroke-width="0.8" stroke-linecap="round" fill="none"/>
+            </svg>
+            <a href="https://huggingface.co/sergioburdisso" target="_blank" rel="noopener noreferrer">
+              Hugging Face
+            </a>
+          </li>
         </ul>
       </div>
     </header>
 
     <section class="flowing">
-      <p>
-        <span class="big-initial">C</span>urious about what I do or who I am? If we were chatting over coffee ☕ (or mate 🧉) one afternoon, and you ask me, I’d probably say something like  :
-      </p>
+      <div class="cols">
+        <div class="col left">
+          <p>
+            <span class="big-initial">C</span>urious about what I do or who I am? If we were chatting over coffee ☕ (or mate 🧉) one afternoon, and you ask me, I’d probably say something like  :
+          </p>
 
-      <p>
-        I’m part of <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap Research Institute</a>’s <em>Speech &amp; Audio Processing</em> group. From <a href="https://ontherhone.com/en/martigny-switzerland/" target="_blank" rel="noopener">a little valley in the heart of the Swiss Alps</a> 🏔️, Idiap has been a leading institute in AI and ML for decades (<b>fun fact:</b> it’s where <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE#L10-L11" target="_blank" rel="noopener noreferrer">PyTorch was born</a>! 🚀). My work focuses on speech recognition, <strong>dialog modeling</strong>, and interpretability, where I aim to extract representations that turn conversations into <em>structures</em> you can reason about.
-      </p>
+          <p>
+            I’m part of <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap Research Institute</a>’s <em>Speech &amp; Audio Processing</em> group. From <a href="https://ontherhone.com/en/martigny-switzerland/" target="_blank" rel="noopener">a little valley in the heart of the Swiss Alps</a> 🏔️, Idiap has been a leading institute in AI and ML for decades (<b>fun fact:</b> it’s where <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE#L10-L11" target="_blank" rel="noopener noreferrer">PyTorch was born</a>! 🚀). My work focuses on speech recognition, <strong>dialog modeling</strong>, and interpretability, where I aim to extract representations that turn conversations into <em>structures</em> you can reason about.
+          </p>
 
-      <p>
-        Recently, I’ve been working on <strong>action-driven sentence embeddings</strong> to transform raw conversations into <em>workflows</em>. In the <a href="https://aclanthology.org/2024.emnlp-main.310/" target="_blank" rel="noopener">Dialog2Flow work</a>, I unified task-oriented dialog datasets to pre-train embeddings that cluster utterances by both semantics and communicative intention, revealing underlying conversational graphs. I also introduced a new <strong>soft-contrastive supervised loss</strong>, which is particularly effective for tasks with many (potentially similar) labels. If you’re curious, the <a href="https://github.com/idiap/dialog2flow" target="_blank" rel="noopener">code</a>, a ready-to-use <a href="https://huggingface.co/sergioburdisso/dialog2flow-joint-bert-base" target="_blank" rel="noopener">model</a>, and the <a href="https://huggingface.co/datasets/sergioburdisso/dialog2flow-dataset" target="_blank" rel="noopener">dataset</a> are available for playing around 🛠️.
-      </p>
+          <p>
+            Recently, I’ve been working on <strong>action-driven sentence embeddings</strong> to transform raw conversations into <em>workflows</em>. In the <a href="https://aclanthology.org/2024.emnlp-main.310/" target="_blank" rel="noopener">Dialog2Flow work</a>, I unified task-oriented dialog datasets to pre-train embeddings that cluster utterances by both semantics and communicative intention, revealing underlying conversational graphs. I also introduced a new <strong>soft-contrastive supervised loss</strong>, which is particularly effective for tasks with many (potentially similar) labels. If you’re curious, the <a href="https://github.com/idiap/dialog2flow" target="_blank" rel="noopener">code</a>, a ready-to-use <a href="https://huggingface.co/sergioburdisso/dialog2flow-joint-bert-base" target="_blank" rel="noopener">model</a>, and the <a href="https://huggingface.co/datasets/sergioburdisso/dialog2flow-dataset" target="_blank" rel="noopener">dataset</a> are available for playing around 🛠️.
+          </p>
 
-      <p>
-        Before LLMs became mainstream, I worked on <strong>interpretable text classification</strong>. During my PhD, I developed the <em>SS3</em> model, a set of equations designed to highlight important textual features as it reads. This model achieved the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) among all participating teams, and led to the creation of the open-source <a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener">PySS3</a> library — if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍.
-      </p>
+          <p>
+            Before LLMs became mainstream, I worked on <strong>interpretable text classification</strong>. During my PhD, I developed the <em>SS3</em> model, a set of equations designed to highlight important textual features as it reads. This model achieved the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) among all participating teams, and led to the creation of the open-source <a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener">PySS3</a> library — if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍.
+          </p>
 
-    <p>
-      As a researcher, I’ve published and reviewed for top-tier NLP and speech venues, including <strong>ACL</strong>, <strong>EMNLP</strong>, <strong>INTERSPEECH</strong>, and <strong>ICASSP</strong>. You can check out the full list of my publications on <a href="https://scholar.google.com/citations?user=XOD8lrAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
-    </p>
-
-    <hr style="border: none; border-top: 1px solid #233047; margin: 2.5rem 0;" aria-hidden="true" />
+          <p>
+            As a researcher, I’ve published and reviewed for top-tier NLP and speech venues, including <strong>ACL</strong>, <strong>EMNLP</strong>, <strong>INTERSPEECH</strong>, and <strong>ICASSP</strong>. You can check out the full list of my publications on <a href="https://scholar.google.com/citations?user=XOD8lrAAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.
+          </p>
 
           <div class="callout">
-        <strong>Recent highlights ✨</strong>
-        <ul>
-          <!-- <li>EMNLP&nbsp;2024 (main): <a href="https://aclanthology.org/2024.emnlp-main.310/" target="_blank" rel="noopener">Dialog2Flow</a> &mdash; pre-training action-driven embeddings + soft contrastive loss.</li> -->
-          <li><b>Winner</b> 😎 of the <a href="https://www.youtube.com/watch?v=PEEGb5SKWek" target="_blank" rel="noopener">ICC Challenge 2024</a>: team <em>Steply</em> (call-center workflow assistant 🧑‍💻).</li>
-          <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with LLMs</em> as a senior researcher member — you can <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener">see me presenting on the final day 🙈</a> on YouTube 🎥.</li>
-        </ul>
+            <strong>Recent highlights ✨</strong>
+            <ul>
+              <li><b>Winner</b> 😎 of the <a href="https://www.youtube.com/watch?v=PEEGb5SKWek" target="_blank" rel="noopener">ICC Challenge 2024</a>: team <em>Steply</em> (call-center workflow assistant 🧑‍💻).</li>
+              <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with LLMs</em> as a senior researcher member — you can <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener">see me presenting on the final day 🙈</a> on YouTube 🎥.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col right">
+          <p>
+            <span class="big-initial">I</span> have been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
+          </p>
+
+          <ul>
+            <li>
+              <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> — click on <em>"Run T-World!"</em> at the bottom and run the <em>"Dynamic and Competitive (2 agents)"</em> environment 😎
+            </li>
+            <li>
+              As a Computer Science student, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built a C++ library to generate valid Windows <code>.exe</code> (PE) files from user-provided x86 instructions. I paused the integration of this library to focus on my PhD and dedicate my efforts to AI research 😅
+            </li>
+            <li id="steering-target">
+              For fun and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and simple-reflect agents with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--accent);">unique emergent behaviors</a> 🙈
+            </li>
+          </ul>
+
+          <!-- <hr style="border: none; border-top: 1px solid #276133; margin: 2.5rem 0;" aria-hidden="true" /> -->
+
+          <p>
+            On the side, in the past I’ve ventured into <a href="https://www.youtube.com/watch?v=qEyS8Xj6Zvs" target="_blank" rel="noopener">2D</a> and <a href="https://www.youtube.com/watch?v=AE1WdCGH-Es" target="_blank" rel="noopener">3D animation</a> (some pieces even aired on MTV Latinoamérica 📺), ethical hacking, and teaching. I also enjoy playing classical guitar 🎵 and learning Japanese 🇯🇵 — at one point, I reached the milestone of reading around 1000 kanjis!
+          </p>
+
+          <p class="muted">
+            If you’d like to connect, feel free to reach out at <a href="mailto:sergio.burdisso@gmail.com">sergio.burdisso@gmail.com</a> ✉️. I’m friendly, passionate, and open-minded, so don't hesitate 💪. Alternatively, you can connect with me on <a href="https://www.linkedin.com/in/sergio-burdisso-a90066334/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+          </p>
+        </div>
       </div>
-
-      <p>
-        <span class="big-initial">I</span> have been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
-      </p>
-      <ul>
-        <li>
-          <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> — click on <em>"Run T-World!"</em> at the bottom and run the <em>"Dynamic and Competitive (2 agents)"</em> environment 😎
-        </li>
-        <li>
-          As a Computer Science student, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built a C++ library to generate valid Windows <code>.exe</code> (PE) files from user-provided x86 instructions. I paused the integration of this library to focus on my PhD and dedicate my efforts to AI research 😅
-        </li>
-        <li id="steering-target">
-          For fun and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and simple-reflect intelligent agents with, sometimes, <a href="#" id="trigger-steering"><b>unique emergent behaviors</b></a> 🙈
-        </li>
-      </ul>
-
-    <hr style="border: none; border-top: 1px solid #233047; margin: 2.5rem 0;" aria-hidden="true" />
-
-      <p>
-        On the side, in the past I’ve ventured into <a href="https://www.youtube.com/watch?v=qEyS8Xj6Zvs" target="_blank" rel="noopener">2D</a> and <a href="https://www.youtube.com/watch?v=AE1WdCGH-Es" target="_blank" rel="noopener">3D animation</a> (some pieces even aired on MTV Latinoamérica 📺), ethical hacking, and teaching. I also enjoy playing classical guitar 🎵 and learning Japanese 🇯🇵 — at one point, I reached the milestone of reading around 1000 kanjis!
-      </p>
-
-      <p class="muted">
-        If you’d like to connect, feel free to reach out at <a href="mailto:sergio.burdisso@gmail.com">sergio.burdisso@gmail.com</a> ✉️. I’m friendly, passionate, and open-minded, so don't hesitate 💪. Alternatively, you can connect with me on <a href="https://www.linkedin.com/in/sergio-burdisso-a90066334/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
-      </p>
     </section>
   </main>
 
