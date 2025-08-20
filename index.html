@@ -3,7 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sergio Burdisso, PhD.</title>
+  <script>
+    const titles = [
+      "Sergio Burdisso, PhD.",
+      "Sergio Burdisso 🤓",
+      "Sergio Burdisso 🚀",
+      "Sergio Burdisso 🤖",
+      "Sergio Burdisso 🧉",
+    ];
+    let index = 0;
+
+    setInterval(() => {
+      document.title = titles[index];
+      index = (index + 1) % titles.length;
+    }, 1000);
+  </script>
   <meta name="description" content="Personal website of Sergio Burdisso — researcher in machine learning and natural language processing." />
   <link rel="canonical" href="https://sergioburdisso.github.io/" />
   <meta name="theme-color" content="#0b0f14" />
@@ -152,15 +166,15 @@
       margin-right: 0.18em;
     }
 
-    @keyframes glow { /* keep a tiny placeholder to avoid errors */
-      from { text-shadow: none; }
-      to   { text-shadow: none; }
+    @keyframes glow { 
+      from { text-shadow: 0 0 0px rgba(255, 255, 255, 0.242), 0 0 0px rgba(255, 255, 255, 0.242); }
+      to   { text-shadow: 0 0 15px rgba(255, 255, 255, 0.42), 0 0 15px rgba(255, 255, 255, 0.42); }
     }
     /* inline style on #trigger-steering を確実に無効化 */
     #trigger-steering {
-      animation: none !important;
-      color: var(--link) !important;
-      text-shadow: none !important;
+      animation: glow 2s infinite alternate;
+      color: var(--link);
+      text-shadow: 0 0 15px var(--link), 0 0 30px var(--link);
     }
 
     /* Make all list markers (bullets and numbers) use the subtitle blue color */
@@ -296,7 +310,7 @@
               As a Computer Science student, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built a C++ library to generate valid Windows <code>.exe</code> (PE) files from user-provided x86 instructions. I paused the integration of this library to focus on my PhD and dedicate my efforts to AI research 😅
             </li>
             <li id="steering-target">
-              For fun and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and simple-reflect agents with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--accent);">unique emergent behaviors</a> 🙈
+              For fun and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and simple-reflect agents with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--link);">unique emergent behaviors</a> 🙈
             </li>
           </ul>
 
