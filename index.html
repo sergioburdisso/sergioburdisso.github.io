@@ -36,6 +36,15 @@
       --accent: #93a6b3; /* muted steel blue */
       --link: #8aa9d8;   /* subtle blue for links */
     }
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --card: #f8f9fa;
+      --ink: #212529;
+      --ink-dim: #6c757d;
+      --accent: #495057;
+      --link: #007bff;
+      --callout-border: rgba(0, 0, 0, 0.1); /* Add a visible border for light theme */
+    }
     html, body { height: 100%; }
     body {
       margin: 0;
@@ -51,7 +60,7 @@
       padding: 2rem;
       background: var(--card);
       border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
     }
     .flowing {
       margin: 0;
@@ -105,20 +114,6 @@
       outline-offset: 3px;
       border-radius: 6px;
     }
-    /* skip link */
-    .skip-link {
-      position: absolute;
-      left: 1rem;
-      top: -40px;
-      background: #1a202c;
-      color: var(--ink);
-      padding: .5rem .75rem;
-      border-radius: 8px;
-      z-index: 100;
-      box-shadow: 0 6px 20px rgba(0,0,0,.35);
-      transition: top .18s ease;
-    }
-    .skip-link:focus { top: 1rem; }
     .tag {
       background: transparent;
       border: 1px solid rgba(255,255,255,0.04);
@@ -136,8 +131,8 @@
       color: var(--link); /* Change list dots to subtitle blue color */
     }
     .callout {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--callout-border, rgba(255, 255, 255, 0.03)); /* Default to dark theme */
       color: var(--ink-dim);
       padding: .9rem;
       border-radius: 10px;
@@ -169,7 +164,7 @@
 
     @keyframes glow { 
       from { text-shadow: 0 0 0px rgba(255, 255, 255, 0.242), 0 0 0px rgba(255, 255, 255, 0.242); }
-      to   { text-shadow: 0 0 15px rgba(255, 255, 255, 0.42), 0 0 15px rgba(255, 255, 255, 0.42); }
+      to   { text-shadow: 0 0 10px rgba(255, 255, 255, 0.42), 0 0 10px rgba(255, 255, 255, 0.3); }
     }
     /* inline style on #trigger-steering を確実に無効化 */
     #trigger-steering {
@@ -187,6 +182,27 @@
     /* Keep inline-list separator blue (already present but ensure precedence) */
     .inline-list li:not(:last-child)::after {
       color: var(--link);
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--card);
+      color: var(--ink);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+      transition: background 0.3s, color 0.3s;
+    }
+    .theme-toggle:hover {
+      background: var(--link);
+      color: var(--bg);
     }
   </style>
 
@@ -207,16 +223,16 @@
   </script>
 </head>
 <body>
-  <!-- skip link for keyboard users -->
-  <a class="skip-link" href="#content">Skip to content</a>
-
   <main id="content" role="main" aria-label="Main content" tabindex="-1">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      ☀️
+    </button>
     <header>
       <!-- profile image: lazy + async decoding + explicit size for layout stability -->
       <img src="profile.png" alt="Sergio Burdisso — portrait" width="140" height="140" loading="lazy" decoding="async" />
       <div>
         <h1>Hi there, I’m Sergio 😊</h1>
-        <p class="sub">I’m an Argentinian 🇦🇷🧉 researcher in <strong>speech and natural language understanding</strong> at <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap</a> 🇨🇭🏔️</p>
+        <p class="sub">Researcher in AI, focusing on <strong>speech and natural language understanding</strong> at <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap</a> 🇨🇭🏔️</p>
         <p style="color: var(--ink-dim); font-style: italic;">五つの「気」： 勇気・元気・本気・やる気・根気</p>
         <ul class="inline-list">
           <li>
@@ -293,14 +309,14 @@
             <strong>Recent highlights ✨</strong>
             <ul>
               <li><b>Winner</b> 😎 of the <a href="https://www.youtube.com/watch?v=PEEGb5SKWek" target="_blank" rel="noopener">ICC Challenge 2024</a>: call-center workflow assistant 🧑‍💻.</li>
-              <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with LLMs</em> as a senior researcher member — you can <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener">see me presenting on the final day 🙈</a> on YouTube 🎥.</li>
+              <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with <b>LLMs</b></em> as a senior researcher member — you can <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener">see me presenting on the final day 🙈</a> on YouTube 🎥.</li>
             </ul>
           </div>
         </div>
 
         <div class="col right">
           <p>
-            <span class="big-initial">A</span>bout my background and hobbies? I've been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
+            <span class="big-initial">A</span>bout my background and hobbies? I’m an Argentinian 🇦🇷🧉 who's been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
           </p>
 
           <ul>
@@ -308,7 +324,7 @@
               <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
             </li>
             <li>
-              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">from user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
+              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files from <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
             </li>
             <li id="steering-target">
               For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and <b>simple-reflex intelligent agents</b> with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--link);">unique emergent behaviors</a> 🙈
@@ -479,7 +495,21 @@
       });
     });
   </script>
-</body>
-</html>
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    // const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = true;
+    const currentTheme = localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
+
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    themeToggle.textContent = currentTheme === "dark" ? "☀️" : "🌙";
+
+    themeToggle.addEventListener("click", () => {
+      const newTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      themeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+    });
+  </script>
 </body>
 </html>
