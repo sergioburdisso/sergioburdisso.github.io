@@ -484,7 +484,9 @@
           paragraphOffset.top + top_offset
         ),
         domObject: element[0],
-        maxVelocity: 3
+        maxVelocity: 2 + Math.random() * 2.5,
+        neighborDistance: 100 + Math.random() * 100,
+        desiredSeparation: 50 + Math.random() * 50
         })
       );
       left_offset += element.width() + 5;

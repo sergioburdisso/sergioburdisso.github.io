@@ -44,7 +44,7 @@ function SolidBot(args){
 			maxVelocity 	: 2,
 			maxSteeringForce: 0.075,
 			wanderBehavior 	: $.extend({
-								radius : 40, 	// Radius for our "wander circle"
+								radius : 100, 	// Radius for our "wander circle"
 								distance : 80,	// Distance for our "wander circle"
 								change: 90 		// Randomness threshold in degrees
 							}, args.wander),
