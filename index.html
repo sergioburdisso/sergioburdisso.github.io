@@ -5,20 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>
     const titles = [
-      "Sergio Burdisso, PhD.",
       "Sergio Burdisso 🤓",
-      "Sergio Burdisso 🚀",
+      "Sergio Burdisso 💻",
       "Sergio Burdisso 🤖",
       "Sergio Burdisso 🧉",
+      "Sergio Burdisso, PhD.",
     ];
     let index = 0;
 
     setInterval(() => {
       document.title = titles[index];
       index = (index + 1) % titles.length;
-    }, 1000);
+    }, 3000);
   </script>
-  <meta name="description" content="Personal website of Sergio Burdisso — researcher in machine learning and natural language processing." />
+  <title>Sergio Burdisso, PhD.</title>
+  <meta name="description" content="Personal website of Sergio Burdisso — researcher in speech and natural language processing." />
   <link rel="canonical" href="https://sergioburdisso.github.io/" />
   <meta name="theme-color" content="#0b0f14" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -299,7 +300,7 @@
 
         <div class="col right">
           <p>
-            <span class="big-initial">A</span>bout my background and hobbies? I have been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
+            <span class="big-initial">A</span>bout my background and hobbies? I've been <b>coding since childhood</b> (20 plus years of experience now! 👶💻), and curiosity keeps pulling me deeper. Here are a few projects I invested a lot of work in the past and I’m especially proud of:
           </p>
 
           <ul>
@@ -307,7 +308,7 @@
               <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
             </li>
             <li>
-              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built a C++ library to generate valid Windows <code>.exe</code> (PE) files from user-provided x86 instructions <span style="color: var(--ink-dim)">— I paused their final integration after switching my professional life towards AI research and focus on my PhD 😅</span>
+              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">from user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
             </li>
             <li id="steering-target">
               For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and <b>simple-reflex intelligent agents</b> with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--link);">unique emergent behaviors</a> 🙈
