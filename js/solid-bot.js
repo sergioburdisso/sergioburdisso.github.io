@@ -452,7 +452,7 @@ function SolidBot(args){
 
 	if (args.cssClass){
 		_objDOM.id = 'bot'+SolidBot.Counter;
-		_objDOM.className = args.cssClass;
+		_objDOM.classList.add(args.cssClass);
 		$(args.idDOMParent).append(_objDOM);
 	// 	if (Math.random() < 0.5)
 	// 		$(args.idDOMParent).append('<button id="bot'+SolidBot.Counter+'" class="'+args.cssClass+'_" style="position:absolute; box-shadow: #BBBBBB 0px 14px 12px -11px;">Enviar</button>');
