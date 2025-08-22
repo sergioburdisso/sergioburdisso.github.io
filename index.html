@@ -37,18 +37,19 @@
       --link: #8aa9d8;   /* subtle blue for links */
     }
     [data-theme="light"] {
-      --bg: #ffffff;
-      --card: #f8f9fa;
+      --bg: #f0f0f0fd;
+      --card: #ebebeb;
       --ink: #212529;
       --ink-dim: #6c757d;
       --accent: #495057;
       --link: #007bff;
       --callout-border: rgba(0, 0, 0, 0.1); /* Add a visible border for light theme */
+      --text-shadow: rgb(190, 189, 189) 0px 10px 10px;
     }
     html, body { height: 100%; }
     body {
       margin: 0;
-      background: linear-gradient(180deg, var(--bg) 0%, color-mix(in oklab, var(--card) 95%, #000 5%) 100%);
+      background: var(--bg);
       color: var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
       line-height: 1.65; font-size: 17px; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
       text-align: justify; /* Added for justified alignment */
@@ -93,6 +94,7 @@
       line-height: 1.1;
       margin: 0;
       letter-spacing: -0.02em;
+      text-shadow: var(--text-shadow);
     }
     .sub {
       color: var(--ink-dim); /* subtitle を控えめに */
@@ -160,6 +162,7 @@
       line-height: 1;
       font-weight: 800;
       margin-right: 0.18em;
+      text-shadow: var(--text-shadow);
     }
 
     @keyframes glow { 
@@ -286,19 +289,19 @@
           </p>
 
           <p>
-            I’m part of <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap Research Institute</a>’s <em>Speech &amp; Audio Processing</em> group. Never heard of Idiap before? Located in a <a href="https://ontherhone.com/en/martigny-switzerland/" target="_blank" rel="noopener">lovely valley in the heart of the Swiss Alps</a> 🇨🇭🏔️, it has been a leading institute in AI for decades (<b>fun fact:</b> <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE#L10-L11" target="_blank" rel="noopener noreferrer">PyTorch was born here</a>! 🚀). My research focuses on the exciting intersection of <strong>speech recognition</strong> and <strong>NLP</strong>, stress‑testing and improving LLM‑based ASR architectures (coupling speech encoders with LLMs) and advancing <strong>dialog modeling &amp; conversational structure induction</strong> for task-oriented dialogues.
+            I’m part of <a href="https://www.idiap.ch/en/scientific-research/expertise" target="_blank" rel="noopener">Idiap Research Institute</a>’s <em>Speech &amp; Audio Processing</em> group. Never heard of Idiap before? Located in a <a href="https://ontherhone.com/en/martigny-switzerland/" target="_blank" rel="noopener">lovely valley in the heart of the Swiss Alps</a> 🇨🇭🏔️, it has been a leading institute in AI for decades (<b>fun fact: <a href="https://github.com/pytorch/pytorch/blob/main/LICENSE#L10-L11" target="_blank" rel="noopener noreferrer">PyTorch was born here</a>! 🚀</b>). My research focuses on the exciting intersection of speech recognition and NLP, stress‑testing and improving LLM‑based ASR architectures (coupling speech encoders with LLMs) and advancing dialog modeling &amp; conversational structure induction for task-oriented dialogues.
           </p>
 
           <p>
-            For example, in <a href="https://aclanthology.org/2024.emnlp-main.310/" target="_blank" rel="noopener">Dialog2Flow</a> we introduced <strong>action‑driven sentence embeddings</strong> that turn multi‑turn conversations into explicit <em>workflow graphs</em>.
+            For example, in <a href="https://aclanthology.org/2024.emnlp-main.310/" target="_blank" rel="noopener">Dialog2Flow</a> we introduced action‑driven sentence embeddings that turn multi‑turn conversations into explicit <em>workflow graphs</em>.
             We unified task‑oriented dialog datasets and pre‑train embeddings that cluster utterances jointly by semantics and communicative intent.
-            As part of this work, I introduced a <strong>new supervised contrastive loss</strong> for large, fine‑grained label spaces <span style="color: var(--ink-dim)">— if you’re curious, you can <a href="https://github.com/idiap/dialog2flow" target="_blank" rel="noopener">check out its GitHub repo</a> 🛠️.</span>
+            As part of this work, <b>I introduced a new supervised contrastive loss</b> for large, fine‑grained label spaces <span style="color: var(--ink-dim)">— if you’re curious, you can <a href="https://github.com/idiap/dialog2flow" target="_blank" rel="noopener">check out its GitHub repo</a> 🛠️.</span>
           </p>
 
           <hr/>
 
           <p>
-            Before LLMs became mainstream, I worked on <strong>interpretable text classification</strong>. During my PhD, I developed the <em>SS3</em> model, a set of equations designed to learn important textual features as it reads. This model achieved, among all participating teams, the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) and led to the <b>creation of the open-source <a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener" class="glow">PySS3</a> library</b> <span style="color: var(--ink-dim)">— if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍 too.</span>
+            Before LLMs became mainstream, I worked on interpretable text classification. <b>During my PhD, I developed the <em>SS3</em> classification model</b> by crafting equations designed to learn important textual features. This model achieved, among all participating teams, the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) and led to the creation of the open-source <b><a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener" class="glow">PySS3</a> library</b> <span style="color: var(--ink-dim)">— if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍 too.</span>
           </p>
 
           <p>
@@ -308,7 +311,7 @@
           <div class="callout">
             <strong>Recent highlights ✨</strong>
             <ul>
-              <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with <b>LLMs</b></em> as a senior researcher member — you can also <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener">see me presenting on the final day 🙈</a> on YouTube 🎥.</li>
+              <li><b>Johns Hopkins University</b>'s JSALT <a href="https://jsalt2023.univ-lemans.fr/en/automatic-design-of-conversational-models-from-observation-of-human-to-human-conversation.html#2-1" target="_blank" rel="noopener">2023</a> &amp; <a href="https://jsalt2025.fit.vut.cz/play-your-part" target="_blank" rel="noopener">2025</a>: contributed to the <em>Automatic design of conversational models</em> and gave lectures on, and contributed to, <em>synthetic dialog generation with LLMs</em> as a senior researcher member — you can also <a href="https://www.youtube.com/live/vFJ_aj1FL1M?si=1VZyUIGAxfPcentn&t=9615" target="_blank" rel="noopener"><b>see me presenting on the final day</b> 🙈</a> on YouTube 🎥.</li>
               <li><b>Winner</b> 😎 of the <a href="https://www.youtube.com/watch?v=PEEGb5SKWek" target="_blank" rel="noopener">ICC 2024</a> <b>AI Hackathon</b>: call-center workflow assistant 🧑‍💻.</li>
             </ul>
           </div>
@@ -321,13 +324,13 @@
 
           <ul>
             <li>
-              <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer" class="glow"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
+              <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer" class="glow"><b>T‑World</b></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> 3D platform for AI research and education <b>where you can code and test your intelligent agents</b>. The platform and the 3D engine are coded completely in pure JavaScript so it runs natively inside the browser without any plugins or server. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. <b>You can even play against them in your browser 🎮, <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out!</a></b>  <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
             </li>
             <li>
-              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files from <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
+              As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, <b>I also created a C-inspired programming language</b>, from scratch, for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files from <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
             </li>
             <li id="steering-target">
-              For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and <b>simple-reflex intelligent agents</b> with, sometimes, <a href="#" id="trigger-steering" class="glow">unique emergent behaviors</a> 🙈
+              For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and simple-reflex <b>intelligent agents with <a href="#" id="trigger-steering" class="glow">interesting emergent behaviors</a></b> 🙈
             </li>
           </ul>
 
@@ -374,7 +377,7 @@
     function display(){
       bots.updateMouseLocation(mouseLoc.x, mouseLoc.y);
 
-      if (flockAndFlee || (performance.now() - window._steeringStart < 400)) {
+      if (flockAndFlee || (performance.now() - window._steeringStart < 200)) {
         bots.flockAndFlee(true);
       } else {
         bots.seekAndSeparate(mouseLoc);
@@ -422,69 +425,93 @@
       const tempDiv = $('<div>').html(originalHtml);
 
       let wordObjs = [];
-      tempDiv.contents().each(function() {
-      if (this.nodeType === 3) {
-        // Text node: split into words
-        $(this).text().split(' ').forEach(word => {
-        if (word.trim() !== '') {
-          wordObjs.push({text: word, isLink: false, isTag: false});
-        }
-        });
-      } else if (this.nodeName.toLowerCase() === 'a') {
-        const href = $(this).attr('href');
-        const target = $(this).attr('target');
-        $(this).text().split(' ').forEach(word => {
-        if (word.trim() !== '') {
-          wordObjs.push({text: word, isLink: true, isTag: false, href: (href == "#")? null : href, target: target});
-        }
-        });
-      } else if ($(this).hasClass('tag')) {
-        $(this).text().split(' ').forEach(word => {
-        if (word.trim() !== '') {
-          wordObjs.push({text: word, isLink: false, isTag: true});
-        }
-        });
-      } else {
-        $(this).text().split(' ').forEach(word => {
-        if (word.trim() !== '') {
-          wordObjs.push({text: word, isLink: false, isTag: false});
-        }
+
+      function pushWords(text, props){
+        text.split(/\s+/).forEach(w=>{
+          if(!w) return;
+          wordObjs.push(Object.assign({text: w, isLink:false, isTag:false, isBold:false}, props));
         });
       }
-      });
+
+      function processNode(node, bold=false) {
+        if (node.nodeType === 3) { // text
+          pushWords(node.nodeValue, {isBold:bold});
+          return;
+        }
+        if (node.nodeType !== 1) return; // only elements
+        const $n = $(node);
+        const name = node.nodeName.toLowerCase();
+        const isBoldTag = (name === 'b' || name === 'strong');
+        const boldNow = bold || isBoldTag;
+
+        if (name === 'a') {
+          // Avoid duplicating the trigger id
+        const href = $n.attr('href');
+        const target = $n.attr('target');
+        const cls = $n.attr('class');
+        // If the anchor has children, recurse; else split its own text
+        if (node.childNodes.length) {
+          Array.from(node.childNodes).forEach(ch => {
+            if (ch.nodeType === 3) {
+          pushWords(ch.nodeValue, {
+            isLink:true,
+            href: (href==="#"? null: href),
+            target: target,
+            className: cls,
+            isBold:boldNow
+          });
+            } else {
+          processNode(ch, boldNow);
+            }
+          });
+        }
+        return;
+        }
+
+        if ($n.hasClass('tag')) {
+          const text = $n.text();
+          pushWords(text, {isTag:true, isBold:boldNow});
+          return;
+        }
+
+        // Generic element: recurse through children
+        if (node.childNodes.length) {
+          Array.from(node.childNodes).forEach(ch => processNode(ch, boldNow));
+        } else {
+          pushWords($n.text(), {isBold:boldNow});
+        }
+      }
+
+      tempDiv.contents().each(function(){ processNode(this, false); });
 
       paragraph.empty().css('height', paragraphHeight);
 
       let left_offset = 0;
       let top_offset = 0;
-      wordObjs.forEach((wordObj) => {
-      let element;
-      if (wordObj.isLink) {
-        element = $('<a>')
+
+      wordObjs.forEach(wordObj => {
+        let element;
+        if (wordObj.isLink) {
+          element = $('<a>')
         .text(wordObj.text + ' ')
         .attr('href', wordObj.href)
-        .attr('target', wordObj.target)
-        .css({
-          position: 'absolute',
-          display: 'inline-block'
-        });
-      } else if (wordObj.isTag) {
-        element = $('<span>')
+        .attr('target', wordObj.target || '_self')
+        .css({position:'absolute',display:'inline-block'});
+          if (wordObj.className) element.addClass(wordObj.className.replace(/\btrigger-steering\b/, ''));
+        } else if (wordObj.isTag) {
+          element = $('<span>')
         .text(wordObj.text + ' ')
         .addClass('tag')
-        .css({
-          position: 'absolute',
-          display: 'inline-block'
-        });
-      } else {
-        element = $('<span>')
+        .css({position:'absolute',display:'inline-block'});
+        } else {
+          element = $('<span>')
         .text(wordObj.text + ' ')
-        .css({
-          position: 'absolute',
-          display: 'inline-block'
-        });
-      }
-      paragraph.append(element);
+        .css({position:'absolute',display:'inline-block'});
+        }
+        if (wordObj.isBold) {
+          element.css('font-weight','bold');
+        }
+        paragraph.append(element);
 
       bots.add(
         new SolidBot({
@@ -508,8 +535,8 @@
   </script>
   <script>
     const themeToggle = document.getElementById("theme-toggle");
-    // const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const prefersDark = true;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // const prefersDark = true;
     const currentTheme = localStorage.getItem("theme") || (prefersDark ? "dark" : "light");
 
     document.documentElement.setAttribute("data-theme", currentTheme);
