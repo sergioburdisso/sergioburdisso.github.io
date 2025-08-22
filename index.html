@@ -166,8 +166,8 @@
       from { text-shadow: 0 0 0px rgba(255, 255, 255, 0), 0 0 0px rgba(255, 255, 255, 0); }
       to   { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.3); }
     }
-    /* inline style on #trigger-steering を確実に無効化 */
-    #trigger-steering {
+    /* Reusable glow effect */
+    .glow {
       animation: glow 2s infinite alternate;
       color: var(--link);
       text-shadow: 0 0 15px var(--link), 0 0 30px var(--link);
@@ -300,7 +300,7 @@
           <hr/>
 
           <p>
-            Before LLMs became mainstream, I worked on <strong>interpretable text classification</strong>. During my PhD, I developed the <em>SS3</em> model, a set of equations designed to learn important textual features as it reads. This model achieved, among all participating teams, the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) and led to the creation of the open-source <a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener">PySS3</a> library <span style="color: var(--ink-dim)">— if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍 too.</span>
+            Before LLMs became mainstream, I worked on <strong>interpretable text classification</strong>. During my PhD, I developed the <em>SS3</em> model, a set of equations designed to learn important textual features as it reads. This model achieved, among all participating teams, the best result in the <a href="https://erisk.irlab.org/">CLEF eRisk challenge</a> for three consecutive years (2019–2021) and led to the creation of the open-source <a href="https://github.com/sergioburdisso/pyss3" target="_blank" rel="noopener" class="glow">PySS3</a> library <span style="color: var(--ink-dim)">— if you’re interested, there’s an <a href="https://sergioburdisso.github.io/ss3/" target="_blank" rel="noopener">online demo</a> 🔍 too.</span>
           </p>
 
           <p>
@@ -323,17 +323,17 @@
 
           <ul>
             <li>
-              <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener">Check it out </a> <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
+              <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener noreferrer"><strong>T‑World</strong></a>: an <a href="https://github.com/sergioburdisso/tworld" target="_blank" rel="noopener noreferrer">open-source</a> and fully web-based <b>3D platform for AI</b> research and education with <b>agents</b>. It’s built with native JavaScript (no frameworks) and runs entirely in the browser. You can code agents in any language, and I’ve included examples like Q-Learning-based reinforcement learning agents and A*-based problem solvers. You can even <b>play against them</b> 🎮! <a href="https://sergioburdisso.github.io/tworld/" target="_blank" rel="noopener" class="glow">Check it out </a> <span style="color: var(--ink-dim)">— click on <em>"Run T-World!"</em> at the bottom and run the first environment of the list 😎</span>
             </li>
             <li>
               As a Computer Science student at <a href="https://www.unsl.edu.ar/" target="_blank" rel="noopener noreferrer">UNSL</a>, I also created, from scratch, a simple C-inspired <b>programming language</b> for people learning to code. I designed its context-free grammar, wrote a recursive-descent parser in C++, and implemented a stack-based virtual processor as its interpreter and the compiler logic for it. Later, I explored compiling directly to machine code and built <a href="https://github.com/sergioburdisso/pe_exe_creator/blob/main/pe_header.h" target="_blank" rel="noopener noreferrer">a C library</a> to generate valid Windows <code>.exe</code> (PE) files from <a href="https://github.com/sergioburdisso/pe_exe_creator/" target="_blank" rel="noopener noreferrer">user-provided x86 instructions</a> <span style="color: var(--ink-dim)">— I paused its integration to the compiler after switching my professional life fully towards AI research 😅</span>
             </li>
             <li id="steering-target">
-              For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and <b>simple-reflex intelligent agents</b> with, sometimes, <a href="#" id="trigger-steering" style="animation: glow 2s infinite alternate; color: var(--link);">unique emergent behaviors</a> 🙈
+              For fun, curiosity and learning, I’ve loved to implement many things from scratch. For instance, communication protocols (<span class="tag">HTTP</span>, <span class="tag">TCP</span>, <span class="tag">UDP</span>, <span class="tag">WebSocket</span>, etc.) based on their RFCs. For example, I coded a <a href="https://github.com/sergioburdisso/tworld-proxy/blob/master/twproxy.c" target="_blank" rel="noopener noreferrer">custom WebSocket proxy server</a> in C to connect external agent programs to the in-browser 3D simulation in T‑World. I also implemented small physics engines, the math behind 3D and 2D rendering, and <b>simple-reflex intelligent agents</b> with, sometimes, <a href="#" id="trigger-steering" class="glow">unique emergent behaviors</a> 🙈
             </li>
           </ul>
 
-          <!-- <hr style="border: none; border-top: 1px solid #276133; margin: 2.5rem 0;" aria-hidden="true" /> -->
+          <hr/>
 
           <p>
             On the side, in the past I’ve ventured into <a href="https://www.youtube.com/watch?v=qEyS8Xj6Zvs" target="_blank" rel="noopener">2D</a> and <a href="https://www.youtube.com/watch?v=AE1WdCGH-Es" target="_blank" rel="noopener">3D animation</a> (some pieces even aired on MTV Latinoamérica 📺), ethical hacking, and teaching. I also enjoy playing classical guitar 🎵 and learning Japanese 🇯🇵 — at one point, I reached the milestone of reading around 1000 kanji!
