@@ -50,6 +50,7 @@ function SolidBot(args){
 							}, args.wander),
 			desiredSeparation: 50,		// Desired separation from another bots
 			neighborDistance : 100,		// How close a bot should be to a "neighbor"
+			borderMargins	: 50,
 			render: function (x, y, angle) {
 						if (args.rotate)
 							$(_idDOM).css({'-webkit-transform': 'rotate('+angle+'deg)', '-moz-transform': 'rotate('+angle+'deg)'});
@@ -75,8 +76,10 @@ function SolidBot(args){
 	 	var _fixedLocation = _loc.copy(); // In case we want the bot to stay at a fixed position
 
 	 	var _idDOM = "#bot"+ SolidBot.Counter;
-		var _objDOM = args.domObject
+		var _objDOM = args.domObject;
 	 	var _self = this;
+
+		var _borderMargins = args.borderMargins;
  	//end region Attributes
  	//
  	//region Methods
@@ -193,7 +196,7 @@ function SolidBot(args){
 				else
 					this.steer.assign(0,0);
 
-				if (_loc.x < 0)
+				if (_loc.x < _borderMargins)
 					this.steer.assign(steerForce, 0);
 				else
 					// Cache the page width and height after the page is rendered/loaded
@@ -202,12 +205,12 @@ function SolidBot(args){
 						this.pageHeight = document.documentElement.scrollHeight;
 					}
 
-					if (_loc.x > this.pageWidth - 0)
+					if (_loc.x > this.pageWidth - _borderMargins)
 						this.steer.assign(-steerForce * 1.75, 0);
 
-					if (_loc.y < 0)
+					if (_loc.y < _borderMargins)
 						this.steer.assign(this.steer.x, steerForce);
-					else if (_loc.y > this.pageHeight - 0)
+					else if (_loc.y > this.pageHeight - _borderMargins)
 						this.steer.assign(this.steer.x, -steerForce * 1.75);
 
 				_self.applyForce(this.steer);
