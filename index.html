@@ -11,12 +11,30 @@
       "Sergio Burdisso 🧉",
       "Sergio Burdisso, PhD.",
     ];
-    let index = 0;
+    let titleIndex = 0;
 
     setInterval(() => {
-      document.title = titles[index];
-      index = (index + 1) % titles.length;
+      document.title = titles[titleIndex];
+      titleIndex = (titleIndex + 1) % titles.length;
     }, 3000);
+
+    // Rotate profile images
+    const profileImages = ["profile1.png", "profile2.png", "profile3.png"];
+    let profileIndex = 1;
+
+    setTimeout(() => {
+      setInterval(() => {
+        const profileImg = document.getElementById("profile-image");
+        if (profileImg) {
+          profileImg.style.opacity = "0";
+          setTimeout(() => {
+            profileImg.src = profileImages[profileIndex];
+            profileImg.style.opacity = "1";
+            profileIndex = (profileIndex + 1) % profileImages.length;
+          }, 300);
+        }
+      }, 4000);
+    }, 4000);
   </script>
   <title>Sergio Burdisso, PhD.</title>
   <meta name="description" content="Personal website of Sergio Burdisso — researcher in speech and natural language processing." />
@@ -86,6 +104,7 @@
       /* 影を弱める */
       box-shadow: 0 6px 18px rgba(0,0,0,0.28);
       width: 140px; height: 140px; border-radius: 18px; object-fit: cover;
+      transition: opacity 0.6s ease-in-out;
     }
     h1 {
       /* メイン見出しをアクセント強すぎない色に */
@@ -232,7 +251,7 @@
     </button>
     <header>
       <!-- profile image: lazy + async decoding + explicit size for layout stability -->
-      <img src="profile.png" alt="Sergio Burdisso — portrait" width="140" height="140" loading="lazy" decoding="async" />
+      <img id="profile-image" src="profile1.png" alt="Sergio Burdisso — portrait" width="140" height="140" loading="lazy" decoding="async" />
       <div>
         <h1>Hi there, I’m Sergio! 👋😊</h1>
         <p class="sub">AI researcher advancing <strong>speech recognition and language understanding</strong> at <a href="https://www.idiap.ch/en/scientific-research/speech-and-audio-processing/index_html" target="_blank" rel="noopener">Idiap</a> 🇨🇭🏔️</p>
